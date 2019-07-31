@@ -1,0 +1,83 @@
+{
+  "name": "patientdemogaphics",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mysql":{
+   "schema":"Matedb",
+   "table":"Patient_Demographics"
+  },
+  "properties": {
+    "PatientId": {
+      "type": "number",
+      "required": true,
+      "id":true
+      
+    },
+    "Dob": {
+      "type": "date",
+      "required": true
+    },
+    "Age": {
+      "type": "string",
+      "required": true
+    },
+    "MaritalStatus": {
+      "type": "string",
+      "required": true
+    },
+    "BloodGroup": {
+      "type": "string",
+      "required": true
+    },
+    "CreateDate": {
+      "type": "date",
+      "required": true
+    },
+    "CreateBy": {
+      "type": "number",
+      "required": true
+    },
+    "ModifyBy": {
+      "type": "number",
+      "required": true
+    },
+    "ModifyDate": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "patient": {
+      "type": "hasMany",
+      "model": "patient",
+      "foreignKey": "PatientId"
+    }
+  },
+  "acls": [],
+  "methods": {
+    "getDemographicsDetails": {
+      "accepts": [
+
+      ],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "array",
+          "root": true,
+          "description": "geeting result"
+        }
+      ],
+      "description": "to gett all gemographics",
+      "http": [ 
+        {
+        "path": "/getDetails",
+        "verb": "get"
+      }
+    ]
+    }
+  }
+}

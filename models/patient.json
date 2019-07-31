@@ -1,0 +1,64 @@
+{
+  "name": "patient",
+  "plural": "patient",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mysql":{
+    "schema":"Matedb",
+    "table":"Patients"
+   },
+  "properties": {
+    "PatientId": {
+      "type": "number",
+      "required": true,
+      "id":true
+      
+    },
+    "Email": {
+      "type": "string",
+      "required": true
+    },
+    "Password": {
+      "type": "string",
+      "required": true
+    },
+    "FirstName": {
+      "type": "string",
+      "required": true
+    },
+    "LastName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "demodrapics": {
+      "type": "belongsTo",
+      "model": "patientdemogaphics",
+      "foreignKey": "PatientId"  
+    }
+  },
+  "acls": [],
+  "methods": {
+    "getPatientDemography": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "result",
+          "type": "array",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "getting details of patient",
+      "http": [{
+        "path": "/patientDetails",
+        "verb": "get"
+      }]
+    }
+  }
+}
